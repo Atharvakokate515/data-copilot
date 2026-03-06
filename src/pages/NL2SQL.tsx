@@ -15,7 +15,7 @@ const NL2SQL: React.FC = () => {
   const [connected, setConnected] = useState(false);
   const [showModal, setShowModal] = useState(true);
 
-  const [sessionId, setSessionId] = useState(crypto.randomUUID());
+  const [sessionId, setSessionId] = useState<string>(crypto.randomUUID());
   const [sessions, setSessions] = useState<NL2SQLSession[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
