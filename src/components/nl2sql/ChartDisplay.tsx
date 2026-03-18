@@ -1,4 +1,5 @@
 import React from "react";
+import { BarChart2, LineChart as LineChartIcon, PieChart as PieChartIcon } from "lucide-react";
 import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
@@ -12,8 +13,14 @@ interface ChartDisplayProps {
 }
 
 const COLORS = [
-  "hsl(239, 84%, 67%)", "hsl(142, 71%, 45%)", "hsl(38, 92%, 50%)",
-  "hsl(0, 84%, 60%)", "hsl(199, 89%, 48%)", "hsl(280, 65%, 60%)",
+  "#acbe57", "#808b34", "#99aa42",
+  "#c0cf7e", "#585b28", "#686e2b",
+];
+
+const chartTypes = [
+  { type: "bar", Icon: BarChart2 },
+  { type: "line", Icon: LineChartIcon },
+  { type: "pie", Icon: PieChartIcon },
 ];
 
 const ChartDisplay: React.FC<ChartDisplayProps> = ({ chart, colNames, rows }) => {
@@ -28,51 +35,63 @@ const ChartDisplay: React.FC<ChartDisplayProps> = ({ chart, colNames, rows }) =>
 
   const commonProps = { data, margin: { top: 10, right: 20, left: 10, bottom: 10 } };
 
-  if (chart.type === "bar") {
-    return (
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart {...commonProps}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(228, 16%, 19.6%)" />
-          <XAxis dataKey={chart.x_axis} tick={{ fill: "hsl(215, 16%, 47%)", fontSize: 11 }} />
-          <YAxis tick={{ fill: "hsl(215, 16%, 47%)", fontSize: 11 }} />
-          <Tooltip contentStyle={{ background: "hsl(226, 20%, 12.7%)", border: "1px solid hsl(228, 16%, 19.6%)", borderRadius: 8, color: "hsl(210, 40%, 96%)" }} />
-          <Bar dataKey={chart.y_axis} fill="hsl(239, 84%, 67%)" radius={[4, 4, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
-    );
-  }
+  const tickStyle = { fill: "#99a870", fontSize: 11 };
+  const tooltipStyle = { background: "#4c4e27", border: "1px solid #585b28", borderRadius: 4, color: "#e8edcc" };
+  const gridStroke = "#585b28";
 
-  if (chart.type === "line") {
-    return (
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart {...commonProps}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(228, 16%, 19.6%)" />
-          <XAxis dataKey={chart.x_axis} tick={{ fill: "hsl(215, 16%, 47%)", fontSize: 11 }} />
-          <YAxis tick={{ fill: "hsl(215, 16%, 47%)", fontSize: 11 }} />
-          <Tooltip contentStyle={{ background: "hsl(226, 20%, 12.7%)", border: "1px solid hsl(228, 16%, 19.6%)", borderRadius: 8, color: "hsl(210, 40%, 96%)" }} />
-          <Line type="monotone" dataKey={chart.y_axis} stroke="hsl(239, 84%, 67%)" strokeWidth={2} dot={{ fill: "hsl(239, 84%, 67%)" }} />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  }
+  return (
+    <div className="relative">
+      {/* Chart type indicators */}
+      <div className="absolute top-0 right-0 flex items-center gap-1 z-10">
+        {chartTypes.map(({ type, Icon }) => (
+          <div
+            key={type}
+            className={`p-1 rounded-[2px] ${chart.type === type ? "text-primary" : "text-muted-foreground"}`}
+          >
+            <Icon size={14} />
+          </div>
+        ))}
+      </div>
 
-  if (chart.type === "pie") {
-    return (
-      <ResponsiveContainer width="100%" height={300}>
-        <PieChart>
-          <Pie data={data} dataKey={colNames[1]} nameKey={colNames[0]} cx="50%" cy="50%" outerRadius={100} label>
-            {data.map((_, i) => (
-              <Cell key={i} fill={COLORS[i % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip contentStyle={{ background: "hsl(226, 20%, 12.7%)", border: "1px solid hsl(228, 16%, 19.6%)", borderRadius: 8, color: "hsl(210, 40%, 96%)" }} />
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
-    );
-  }
+      {chart.type === "bar" && (
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart {...commonProps}>
+            <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+            <XAxis dataKey={chart.x_axis} tick={tickStyle} />
+            <YAxis tick={tickStyle} />
+            <Tooltip contentStyle={tooltipStyle} />
+            <Bar dataKey={chart.y_axis} fill="#acbe57" radius={[2, 2, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      )}
 
-  return null;
+      {chart.type === "line" && (
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart {...commonProps}>
+            <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+            <XAxis dataKey={chart.x_axis} tick={tickStyle} />
+            <YAxis tick={tickStyle} />
+            <Tooltip contentStyle={tooltipStyle} />
+            <Line type="monotone" dataKey={chart.y_axis} stroke="#acbe57" strokeWidth={2} dot={{ fill: "#acbe57" }} />
+          </LineChart>
+        </ResponsiveContainer>
+      )}
+
+      {chart.type === "pie" && (
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie data={data} dataKey={colNames[1]} nameKey={colNames[0]} cx="50%" cy="50%" outerRadius={100} label>
+              {data.map((_, i) => (
+                <Cell key={i} fill={COLORS[i % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip contentStyle={tooltipStyle} />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      )}
+    </div>
+  );
 };
 
 export default ChartDisplay;
