@@ -11,13 +11,13 @@ const ToolBadge: React.FC<ToolBadgeProps> = ({ tool, sqlUsed, ragUsed }) => {
     return (
       <div className="flex items-center gap-1.5">
         {sqlUsed && (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded bg-primary/20 text-primary">
-            🗄 SQL
+          <span className="inline-flex items-center font-mono uppercase text-[9px] tracking-[0.15em] px-2 py-0.5 rounded-[2px] bg-card text-primary">
+            [ SQL ]
           </span>
         )}
         {ragUsed && (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded bg-success/20 text-success">
-            📄 RAG
+          <span className="inline-flex items-center font-mono uppercase text-[9px] tracking-[0.15em] px-2 py-0.5 rounded-[2px] bg-card text-muted-foreground">
+            [ RAG ]
           </span>
         )}
       </div>
@@ -26,8 +26,8 @@ const ToolBadge: React.FC<ToolBadgeProps> = ({ tool, sqlUsed, ragUsed }) => {
 
   if (tool === "chat") {
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded bg-muted text-muted-foreground">
-        💬 Chat
+      <span className="inline-flex items-center font-mono uppercase text-[9px] tracking-[0.15em] px-2 py-0.5 rounded-[2px] bg-card text-border">
+        [ CHAT ]
       </span>
     );
   }
