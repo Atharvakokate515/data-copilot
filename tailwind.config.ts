@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
         mono: ["IBM Plex Mono", "JetBrains Mono", "Fira Code", "monospace"],
+        syne: ["Syne", "sans-serif"],
+        figtree: ["Figtree", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -70,7 +72,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-      },
+        landing: {
+          bg: "#09090b",
+          card: "#1c1c1f",
+          amber: "#f5af19",
+          teal: "#2dd4bf",
+          muted: "#a1a1aa",
+          "card-border": "#2a2a2e",
+        },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
