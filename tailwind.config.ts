@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
         mono: ["IBM Plex Mono", "JetBrains Mono", "Fira Code", "monospace"],
+        syne: ["Syne", "sans-serif"],
+        figtree: ["Figtree", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
