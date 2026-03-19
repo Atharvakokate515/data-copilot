@@ -72,7 +72,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-      },
+        landing: {
+          bg: "#09090b",
+          card: "#1c1c1f",
+          amber: "#f5af19",
+          teal: "#2dd4bf",
+          muted: "#a1a1aa",
+          "card-border": "#2a2a2e",
+        },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
