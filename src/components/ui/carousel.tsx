@@ -146,7 +146,7 @@ const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
     );
   },
 );
-CarouselContent.displayName = "CarouselContent";
+CarouselContent.displayName = "CarouselContent"; 
 
 const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
