@@ -12,7 +12,7 @@ const Home = () => (
   <div className="min-h-screen bg-landing-bg text-white overflow-x-hidden">
     <LandingNavbar />
     <HeroSection />
-    <AboutSection />
+    <AboutSection /> 
     <PipelinesSection />
     <MetricsBar />
     <FeaturesSection />
