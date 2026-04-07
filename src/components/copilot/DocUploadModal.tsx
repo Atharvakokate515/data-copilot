@@ -80,7 +80,7 @@ const DocUploadModal: React.FC<DocUploadModalProps> = ({ onReady, onClose, showB
                 </div>
                 <button
                   onClick={() => handleDelete(doc.source)}
-                  className="p-1 rounded-[4px] opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all duration-200"
+                  className="p-1 rounded-[4px] opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all duration-200" 
                 >
                   <Trash2 size={14} />
                 </button>
