@@ -22,7 +22,7 @@ const AboutSection = () => (
     {/* Divider */}
     <div className="h-px w-full bg-gradient-to-r from-transparent via-landing-amber/50 to-transparent mb-20" />
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16"> 
       {/* Left: descriptive text */}
       <div className="space-y-6">
         <p className="font-syne font-bold text-[48px] leading-[1.15] text-white mb-4">
